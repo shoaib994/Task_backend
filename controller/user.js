@@ -84,29 +84,24 @@ exports.getMedical= async (req, res, next) => {
     })
   }
 }
-// exports.updateUserData= async (req, res, next) => {
-//   try {
-      
-//     const responseData = {
-//       message: 'Hello, world!',
-//       data: {
-//         foo: 'bar',
-//         baz: 123
-//       }
-//     };
+exports.generateFile= async (req, res, next) => {
+  try {
   
-//     // Set the appropriate CORS headers
-//     res.setHeader('Access-Control-Allow-Origin', '*');
-//     res.setHeader('Access-Control-Allow-Methods', 'GET');
-//     res.setHeader('Access-Control-Allow-Headers', '');
-  
-//     // Send the JSON response
-//     res.json(responseData);
-//   }
-//   catch (error) {
-//     return res.json({
-//       success: false,
-//       message: error.message
-//     })
-//   }
-// }
+ // Set the appropriate CORS headers
+ res.setHeader('Access-Control-Allow-Origin', '*');
+ res.setHeader('Access-Control-Allow-Methods', 'GET');
+ res.setHeader('Access-Control-Allow-Headers', '');
+
+        
+      return res.json({
+        city:"Hello World"
+      })
+
+  }
+  catch (error) {
+    return res.json({
+      success: false,
+      message: error.message
+    })
+  }
+}
