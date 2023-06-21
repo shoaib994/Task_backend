@@ -94,6 +94,7 @@ exports.generateFile= async (req, res, next) => {
     const {name,email,city,phone,CPT_code,procedureName,procedureType,zip_code}=req.body;
     console.log(req.body)
   // Load the docx file as binary content
+  return res.json(path.join(process.cwd()))
   const cptCode="radiology"
   var filename=''
   if(procedureType?.toLowerCase()=="labs"){
