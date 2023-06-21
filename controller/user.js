@@ -94,7 +94,7 @@ exports.generateFile= async (req, res, next) => {
     const {name,email,city,phone,CPT_code,procedureName,procedureType,zip_code}=req.body;
     console.log(req.body)
   // Load the docx file as binary content
-  return res.json(path.join(process.cwd()))
+  // return res.json(path.join(process.cwd()))
   const cptCode="radiology"
   var filename=''
   if(procedureType?.toLowerCase()=="labs"){
@@ -108,7 +108,7 @@ exports.generateFile= async (req, res, next) => {
     filename='specialist'
   }
   const content = fs.readFileSync(
-    path.resolve(__dirname, `../template/${filename}.docx`),
+    path.resolve(process.cwd(), `template/${filename}.docx`),
     "binary"
 );
 
@@ -137,7 +137,7 @@ exports.generateFile= async (req, res, next) => {
 
   // buf is a nodejs Buffer, you can either write it to a
   // file or res.send it with express for example.
-  fs.writeFileSync(path.resolve(__dirname, `../files/${fileName}.docx`), buf);
+  fs.writeFileSync(path.resolve(process.cwd(), `files/${fileName}.docx`), buf);
 
 
 
