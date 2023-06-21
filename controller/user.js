@@ -107,7 +107,7 @@ exports.generateFile= async (req, res, next) => {
     filename='specialist'
   }
   const content = fs.readFileSync(
-    path.resolve(__dirname, `../template/${filename}.docx`),
+    path.resolve(__dirname, `${filename}.docx`),
     "binary"
 );
 
