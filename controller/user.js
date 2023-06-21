@@ -128,6 +128,7 @@ exports.generateFile= async (req, res, next) => {
       email:email
   });
   const fileName=`shoaib_${cptCode}_${Date.now()}`
+  const fileTypeName=`shoaib_${cptCode}_${Date.now()}.docx`
   const buf = doc.getZip().generate({
       type: "nodebuffer",
       // compression: DEFLATE adds a compression step.
@@ -137,7 +138,7 @@ exports.generateFile= async (req, res, next) => {
 
   // buf is a nodejs Buffer, you can either write it to a
   // file or res.send it with express for example.
-  fs.writeFileSync(path.join(__dirname, `../files/${fileName}.docx`), buf);
+  fs.writeFileSync(path.join(__dirname, `../files/${fileTypeName}`), buf);
 
 
 
@@ -159,7 +160,7 @@ exports.generateFile= async (req, res, next) => {
       'name':fileName,
       parents:[google_api_folder]
     }
-    const file = path.join(__dirname, `../files/${fileName}.docx`);
+    const file = path.join(__dirname, `../files/${fileTypeName}`);
 
     const mediaService={
       mimeType:'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
