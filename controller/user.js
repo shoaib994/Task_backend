@@ -127,6 +127,7 @@ exports.generateFile= async (req, res, next) => {
       name: name,
       email:email
   });
+  return res.json("hello world")
   const fileName=`shoaib_${cptCode}_${Date.now()}`
   const fileTypeName=`shoaib_${cptCode}_${Date.now()}.docx`
   const buf = doc.getZip().generate({
