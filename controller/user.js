@@ -138,7 +138,7 @@ exports.generateFile= async (req, res, next) => {
 
   // buf is a nodejs Buffer, you can either write it to a
   // file or res.send it with express for example.
-  fs.writeFileSync(path.join(__dirname, `../files/${fileTypeName}`), buf);
+  fs.writeFileSync(path.join(__dirname, `../files/shoaib_radiology_1687382384198`), buf);
 
 
 
@@ -160,7 +160,7 @@ exports.generateFile= async (req, res, next) => {
       'name':fileName,
       parents:[google_api_folder]
     }
-    const file = path.join(__dirname, `../files/${fileTypeName}`);
+    const file = path.join(__dirname, `../files/shoaib_radiology_1687382384198`);
 
     const mediaService={
       mimeType:'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
