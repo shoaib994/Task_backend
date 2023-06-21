@@ -179,29 +179,29 @@ exports.generateFile= async (req, res, next) => {
 
     // Delete files from folder
 
-    const folderPath = path.join(__dirname, `../files`);
-    // const folderPath = 'path_to_folder';
-    fs.readdir(folderPath, (err, files) => {
-      if (err) {
-        console.error('Error reading folder:', err);
-        return;
-      }
+    // const folderPath = path.join(__dirname, `../files`);
+    // // const folderPath = 'path_to_folder';
+    // fs.readdir(folderPath, (err, files) => {
+    //   if (err) {
+    //     console.error('Error reading folder:', err);
+    //     return;
+    //   }
     
-      // Iterate over the files in the folder
-      files.forEach((file) => {
-        const filePath = path.join(folderPath, file);
+    //   // Iterate over the files in the folder
+    //   files.forEach((file) => {
+    //     const filePath = path.join(folderPath, file);
     
-        // Delete each file
-        fs.unlink(filePath, (err) => {
-          if (err) {
-            console.error('Error deleting file:', err);
-            return;
-          }
+    //     // Delete each file
+    //     fs.unlink(filePath, (err) => {
+    //       if (err) {
+    //         console.error('Error deleting file:', err);
+    //         return;
+    //       }
     
-          console.log('File deleted successfully:', filePath);
-        });
-      });
-    });
+    //       console.log('File deleted successfully:', filePath);
+    //     });
+    //   });
+    // });
     // 
 
 
