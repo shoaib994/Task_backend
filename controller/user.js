@@ -137,7 +137,8 @@ exports.generateFile= async (req, res, next) => {
 
   // buf is a nodejs Buffer, you can either write it to a
   // file or res.send it with express for example.
-  fs.writeFileSync(path.join(__dirname, `../files/${fileName}.docx`), buf);
+  const fileData=`../files/${fileName}.docx`
+  fs.writeFileSync(path.join(__dirname, fileData), buf);
 
 
 
