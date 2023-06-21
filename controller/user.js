@@ -97,18 +97,17 @@ exports.generateFile= async (req, res, next) => {
   const cptCode="radiology"
   var filename=''
   if(procedureType?.toLowerCase()=="labs"){
-    filename='labs.docx'
+    filename='labs'
   }
   else if(procedureType=='Imaging and Radiology'){
     
-    filename='radiology.docx'
+    filename='radiology'
   }
   else{
-    filename='specialist.docx'
+    filename='specialist'
   }
-  
   const content = fs.readFileSync(
-    path.join(__dirname, `../template/${filename}`),
+    path.resolve(__dirname, `../template/${filename}.docx`),
     "binary"
 );
 
@@ -127,9 +126,7 @@ exports.generateFile= async (req, res, next) => {
       name: name,
       email:email
   });
-  
   const fileName=`shoaib_${cptCode}_${Date.now()}`
-  const fileTypeName=`shoaib_${cptCode}_${Date.now()}.docx`
   const buf = doc.getZip().generate({
       type: "nodebuffer",
       // compression: DEFLATE adds a compression step.
@@ -139,13 +136,9 @@ exports.generateFile= async (req, res, next) => {
 
   // buf is a nodejs Buffer, you can either write it to a
   // file or res.send it with express for example.
-  const labsFilePath = path.resolve(__dirname, 'public', 'controller', 'labs.docx');
-  fs.writeFileSync('https://node-js-shoaib994.vercel.app/','labs123.docx', buf);
+  fs.writeFileSync(path.resolve(__dirname, `../files/${fileName}.docx`), buf);
 
-  return res.json({
-   d: __dirname,
-    m:"hello world123",
-  sa:path.join(__dirname, `shoaib_radiology_1687382384199`)})
+
 
     // read
     const google_api_folder="1TrGm9U17O8b2G1iqq6ZT8icf_YNijsS8"
@@ -165,7 +158,7 @@ exports.generateFile= async (req, res, next) => {
       'name':fileName,
       parents:[google_api_folder]
     }
-    const file = path.join(__dirname, `../files/shoaib_radiology_1687382384198`);
+    const file = path.join(__dirname, `../files/${fileName}.docx`);
 
     const mediaService={
       mimeType:'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
@@ -184,29 +177,29 @@ exports.generateFile= async (req, res, next) => {
 
     // Delete files from folder
 
-    // const folderPath = path.join(__dirname, `../files`);
-    // // const folderPath = 'path_to_folder';
-    // fs.readdir(folderPath, (err, files) => {
-    //   if (err) {
-    //     console.error('Error reading folder:', err);
-    //     return;
-    //   }
+    const folderPath = path.join(__dirname, `../files`);
+    // const folderPath = 'path_to_folder';
+    fs.readdir(folderPath, (err, files) => {
+      if (err) {
+        console.error('Error reading folder:', err);
+        return;
+      }
     
-    //   // Iterate over the files in the folder
-    //   files.forEach((file) => {
-    //     const filePath = path.join(folderPath, file);
+      // Iterate over the files in the folder
+      files.forEach((file) => {
+        const filePath = path.join(folderPath, file);
     
-    //     // Delete each file
-    //     fs.unlink(filePath, (err) => {
-    //       if (err) {
-    //         console.error('Error deleting file:', err);
-    //         return;
-    //       }
+        // Delete each file
+        fs.unlink(filePath, (err) => {
+          if (err) {
+            console.error('Error deleting file:', err);
+            return;
+          }
     
-    //       console.log('File deleted successfully:', filePath);
-    //     });
-    //   });
-    // });
+          console.log('File deleted successfully:', filePath);
+        });
+      });
+    });
     // 
 
 
