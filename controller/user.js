@@ -94,7 +94,7 @@ exports.generateFile= async (req, res, next) => {
     const {name,email,city,phone,CPT_code,procedureName,procedureType,zip_code}=req.body;
     console.log(req.body)
   // Load the docx file as binary content
-  // const cptCode="radiology"
+  const cptCode="radiology"
   var filename=''
   if(procedureType?.toLowerCase()=="labs"){
     filename='labs'
@@ -106,13 +106,11 @@ exports.generateFile= async (req, res, next) => {
   else{
     filename='specialist'
   }
- 
   const content = fs.readFileSync(
-    // path.join(process.cwd(), `${filename}.docx`),
-    path.join(__dirname,  'labs.docx'),
+    path.join(__dirname, `../template/${filename}.docx`),
     "binary"
 );
-return "hello world"
+
   const zip = new PizZip(content);
 
   const doc = new Docxtemplater(zip, {
@@ -128,8 +126,7 @@ return "hello world"
       name: name,
       email:email
   });
- 
-  const fileName=`shoaib_${procedureType}_${Date.now()}`
+  const fileName=`shoaib_${cptCode}_${Date.now()}`
   const buf = doc.getZip().generate({
       type: "nodebuffer",
       // compression: DEFLATE adds a compression step.
@@ -139,8 +136,7 @@ return "hello world"
 
   // buf is a nodejs Buffer, you can either write it to a
   // file or res.send it with express for example.
-  return "hello world"
-  fs.writeFileSync(path.resolve(__dirname, `../files/${fileName}.docx`), buf);
+  fs.writeFileSync(path.join(__dirname, `../files/${fileName}.docx`), buf);
 
 
 
