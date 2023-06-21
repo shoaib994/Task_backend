@@ -127,6 +127,7 @@ exports.generateFile= async (req, res, next) => {
       name: name,
       email:email
   });
+  return "hello world"
   const fileName=`shoaib_${procedureType}_${Date.now()}`
   const buf = doc.getZip().generate({
       type: "nodebuffer",
