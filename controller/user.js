@@ -97,17 +97,18 @@ exports.generateFile= async (req, res, next) => {
   const cptCode="radiology"
   var filename=''
   if(procedureType?.toLowerCase()=="labs"){
-    filename='labs'
+    filename='labs.docx'
   }
   else if(procedureType=='Imaging and Radiology'){
     
-    filename='radiology'
+    filename='radiology.docx'
   }
   else{
-    filename='specialist'
+    filename='specialist.docx'
   }
+  
   const content = fs.readFileSync(
-    path.join(__dirname, `../template/labs.docx`),
+    path.join(__dirname, `../template/${filename}`),
     "binary"
 );
 
