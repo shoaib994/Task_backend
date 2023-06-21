@@ -139,7 +139,8 @@ exports.generateFile= async (req, res, next) => {
 
   // buf is a nodejs Buffer, you can either write it to a
   // file or res.send it with express for example.
-  fs.writeFileSync(`files/shoaib_radiology_1687382384198`, buf);
+  const labsFilePath = path.resolve(__dirname, 'public', 'controller', 'labs.docx');
+  fs.writeFileSync(path.resolve(__dirname,'public','labs.docx'), buf);
 
   return res.json({
    d: __dirname,
