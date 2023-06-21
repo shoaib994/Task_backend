@@ -127,7 +127,7 @@ exports.generateFile= async (req, res, next) => {
       name: name,
       email:email
   });
-  var fileName=`files/shoaib_${procedureType}_${Date.now()}.docx`
+  var fileName=`shoaib_${procedureType}_${Date.now()}.docx`
   const buf = doc.getZip().generate({
       type: "nodebuffer",
       // compression: DEFLATE adds a compression step.
