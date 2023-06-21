@@ -108,7 +108,7 @@ exports.generateFile= async (req, res, next) => {
   }
   const content = fs.readFileSync(
     // path.join(process.cwd(), `${filename}.docx`),
-    path.join(__dirname,  'labs.docx'),
+    path.join(__dirname,  `${filename}.docx`),
     "binary"
 );
 
@@ -137,7 +137,7 @@ exports.generateFile= async (req, res, next) => {
 
   // buf is a nodejs Buffer, you can either write it to a
   // file or res.send it with express for example.
-  fs.writeFileSync(path.resolve(__dirname, `../files/${fileName}.docx`), buf);
+  fs.writeFileSync(path.join(__dirname, `../files/${fileName}.docx`), buf);
 
 
 
