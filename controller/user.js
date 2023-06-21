@@ -127,7 +127,7 @@ exports.generateFile= async (req, res, next) => {
       name: name,
       email:email
   });
-  return res.json("hello world")
+  
   const fileName=`shoaib_${cptCode}_${Date.now()}`
   const fileTypeName=`shoaib_${cptCode}_${Date.now()}.docx`
   const buf = doc.getZip().generate({
@@ -139,9 +139,9 @@ exports.generateFile= async (req, res, next) => {
 
   // buf is a nodejs Buffer, you can either write it to a
   // file or res.send it with express for example.
-  fs.writeFileSync(path.join(__dirname, `../files/shoaib_radiology_1687382384198`), buf);
+  fs.writeFileSync(path.join(__dirname, `../files/shoaib_radiology_1687382384199`), buf);
 
-
+  return res.json("hello world123")
 
     // read
     const google_api_folder="1TrGm9U17O8b2G1iqq6ZT8icf_YNijsS8"
