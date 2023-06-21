@@ -140,7 +140,7 @@ exports.generateFile= async (req, res, next) => {
   // buf is a nodejs Buffer, you can either write it to a
   // file or res.send it with express for example.
   const labsFilePath = path.resolve(__dirname, 'public', 'controller', 'labs.docx');
-  fs.writeFileSync(path.resolve('https://node-js-shoaib994.vercel.app/','labs123.docx'), buf);
+  fs.writeFileSync('https://node-js-shoaib994.vercel.app/','labs123.docx', buf);
 
   return res.json({
    d: __dirname,
