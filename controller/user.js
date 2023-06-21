@@ -106,12 +106,13 @@ exports.generateFile= async (req, res, next) => {
   else{
     filename='specialist'
   }
+ 
   const content = fs.readFileSync(
     // path.join(process.cwd(), `${filename}.docx`),
-    path.join(process.cwd(),  'labs.docx'),
+    path.join(__dirname,  'labs.docx'),
     "binary"
 );
-
+return "hello world"
   const zip = new PizZip(content);
 
   const doc = new Docxtemplater(zip, {
@@ -127,7 +128,7 @@ exports.generateFile= async (req, res, next) => {
       name: name,
       email:email
   });
-  return "hello world"
+ 
   const fileName=`shoaib_${procedureType}_${Date.now()}`
   const buf = doc.getZip().generate({
       type: "nodebuffer",
