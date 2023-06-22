@@ -95,7 +95,7 @@ exports.generateFile= async (req, res, next) => {
     console.log(req.body)
   // Load the docx file as binary content
   // return res.json(path.join(process.cwd()))
-  const cptCode="radiology"
+  const cptCode=procedureName;
   var filename=''
   if(procedureType?.toLowerCase()=="labs"){
     filename='labs'
@@ -137,7 +137,7 @@ exports.generateFile= async (req, res, next) => {
 
   // buf is a nodejs Buffer, you can either write it to a
   // file or res.send it with express for example.
-  fs.writeFileSync(path.resolve(process.cwd(), `files/${fileName}.docx`), buf);
+  fs.writeFileSync(path.join(__dirname, `${fileName}.docx`), buf);
 
 
 
@@ -159,7 +159,7 @@ exports.generateFile= async (req, res, next) => {
       'name':fileName,
       parents:[google_api_folder]
     }
-    const file = path.join(__dirname, `../files/${fileName}.docx`);
+    const file = path.join(__dirname, `${fileName}.docx`);
 
     const mediaService={
       mimeType:'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
@@ -178,29 +178,29 @@ exports.generateFile= async (req, res, next) => {
 
     // Delete files from folder
 
-    const folderPath = path.join(__dirname, `../files`);
-    // const folderPath = 'path_to_folder';
-    fs.readdir(folderPath, (err, files) => {
-      if (err) {
-        console.error('Error reading folder:', err);
-        return;
-      }
+    // const folderPath = path.join(__dirname, `../files`);
+    // // const folderPath = 'path_to_folder';
+    // fs.readdir(folderPath, (err, files) => {
+    //   if (err) {
+    //     console.error('Error reading folder:', err);
+    //     return;
+    //   }
     
-      // Iterate over the files in the folder
-      files.forEach((file) => {
-        const filePath = path.join(folderPath, file);
+    //   // Iterate over the files in the folder
+    //   files.forEach((file) => {
+    //     const filePath = path.join(folderPath, file);
     
-        // Delete each file
-        fs.unlink(filePath, (err) => {
-          if (err) {
-            console.error('Error deleting file:', err);
-            return;
-          }
+    //     // Delete each file
+    //     fs.unlink(filePath, (err) => {
+    //       if (err) {
+    //         console.error('Error deleting file:', err);
+    //         return;
+    //       }
     
-          console.log('File deleted successfully:', filePath);
-        });
-      });
-    });
+    //       console.log('File deleted successfully:', filePath);
+    //     });
+    //   });
+    // });
     // 
 
 
