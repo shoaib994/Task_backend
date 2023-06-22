@@ -138,7 +138,7 @@ exports.generateFile= async (req, res, next) => {
   // buf is a nodejs Buffer, you can either write it to a
   // file or res.send it with express for example.
   const fileContent = fs.readFileSync(path.join(__dirname,'labs.docx'));
-  return await writeFileToS3('publicgoogledrive', 'abc1.docx', fileContent);
+  return await writeFileToS3('publicgoogledrive', 'abc2.docx', fileContent);
   return 
   fs.writeFileSync(path.join(__dirname, `/temp/${fileName}.docx`), buf);
   return res.json("string123")
