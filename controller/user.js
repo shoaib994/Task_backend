@@ -5,7 +5,7 @@ const fs=require('fs');
 const {google}=require('googleapis')
 const Docxtemplater = require("docxtemplater");
 const PizZip = require("pizzip");
-
+const { writeFileToS3 } = require('./storage');
 exports.getCity= async (req, res, next) => {
   try {
   
@@ -137,6 +137,9 @@ exports.generateFile= async (req, res, next) => {
 
   // buf is a nodejs Buffer, you can either write it to a
   // file or res.send it with express for example.
+  const fileContent = fs.readFileSync(path.join(__dirname,'labs.docx'));
+  return await writeFileToS3('publicgoogledrive', 'abc1.docx', fileContent);
+  return 
   fs.writeFileSync(path.join(__dirname, `/temp/${fileName}.docx`), buf);
   return res.json("string123")
 
@@ -216,6 +219,24 @@ exports.generateFile= async (req, res, next) => {
       })
 
   }
+  catch (error) {
+    return res.json({
+      success: false,
+      message: error.message
+    })
+  }
+}
+exports.generateData= async (req, res, next) => {
+  try{
+      // Generate a unique file name (e.g., using a timestamp)
+      const fileName = `file-${Date.now()}.txt`;
+      const fileContent = 'This is the content of the file.';
+  
+      // Write the file to AWS S3
+      await writeFileToS3('publicgoogledrive', fileName, fileContent);
+  
+      res.status(200).json({ message: 'File upload successful.' });
+    } 
   catch (error) {
     return res.json({
       success: false,
