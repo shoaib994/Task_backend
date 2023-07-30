@@ -5,7 +5,7 @@ const {
   v1: uuidv1,
   v4: uuidv4,
 } = require('uuid');
-// console.log("uuidv1();",uuidv1())
+
 exports.signup= async (req, res, next) => {
   try {
     
