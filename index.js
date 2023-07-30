@@ -1,9 +1,9 @@
 
 const express=require('express');
 const app=express()
-
+require('dotenv').config()
 const cors = require("cors");
-const PORT=4000
+const PORT=process.env.PORT ||4000
 const path = require("path");
 
 app.listen(PORT,()=>console.log(`server is working on ${PORT}`))
@@ -20,6 +20,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions)) // Use this after the variable declaration
 
-app.use('/api/v1/sheet', require('./routes/user'))
+app.use('/api/v1', require('./routes/user'))
  
 module.exports=app
